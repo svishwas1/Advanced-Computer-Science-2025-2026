@@ -6,6 +6,7 @@ public class Monitor {
     private String ShapeOfMonitor; //= "Rectangle";
     private String DisplayClub; //= "TaekwonDance";
     private boolean OnWall;
+    private int brightness;
 
     //When you make a NEW object, this code runs
     public Monitor() {
@@ -16,6 +17,7 @@ public class Monitor {
         ShapeOfMonitor = "Rectangle";
         DisplayClub = "TaekwonDance";
         OnWall = true;
+        brightness = 55;
     }
 
     //public __WhatComesOut__ name of function__(_inputs_){}
@@ -47,6 +49,39 @@ public class Monitor {
         System.out.println("Is clock on wall? " + OnWall);
     }
 
+    public void setColor(String ColorOffMonitor) {
+        ColorOfMonitor = "red";
+    }
+
+    public String getShapeofMonitor(String ShapeOfMonitor) {
+        return ShapeOfMonitor;
+    }
+
+    public boolean OnWall(boolean OnWall) {
+        return OnWall;
+    }
+
+    public void setCharacterOnScreen(char CharacterOnScreen) {
+        CharacterOnScreen = 'V';
+    }
+
+    public void changeTime(double timePassed) {
+        if (timePassed > timeUntilClass) {
+            System.out.println("Too much time has passed");
+            timeUntilClass = timeUntilClass - timePassed;
+        } else {
+            timeUntilClass = timeUntilClass - timePassed;
+            System.out.println("Time until class is now" + timeUntilClass);
+        }
+        if (timeUntilClass <= 0) {
+            System.out.println("You are late to class!");
+        }
+    }
+
+    public double setBrightness(int brightness) {
+        Math.sqrt(brightness);
+    
+    }
 
     //Display the Date 
     //Break 

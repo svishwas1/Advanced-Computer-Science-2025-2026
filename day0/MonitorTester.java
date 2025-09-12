@@ -8,5 +8,9 @@ public class MonitorTester {
         libraryMonitor.turn_off();
         libraryMonitor.change_time();
         libraryMonitor.takeOffWall();
+        System.out.println("\n*** ARE YOU ONTIME FOR CLASS ***");
+        libraryMonitor.changeTime(20.50);
+        System.out.print(libraryMonitor.getShapeofMonitor("Square"));
+
     }
 }
