@@ -37,8 +37,8 @@ public class Bank {
     }
 
     public boolean equals(Bank otherBank) {
-        if (this.numberOfLoanOfficers == otherBank.numberOfLoanOfficers && 
-            this.numberOfTellers == otherBank.numberOfTellers) {
+        if (this.numberOfLoanOfficers == otherBank.numberOfLoanOfficers 
+            && this.numberOfTellers == otherBank.numberOfTellers) {
             return true;
         } else {
             return false;
