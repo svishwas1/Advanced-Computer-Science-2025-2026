@@ -62,7 +62,7 @@ public class Bank {
             numberOfLoanOfficers = numberOfLoanOfficers - 1;
             System.out.println("Loan Officer Fired! There are " 
                 + numberOfLoanOfficers + " employees left.");
-        } else if (numberOfLoanOfficers >= 1 && numberOfTellers >= 1) {
+        } else if (!isLoanOfficer && numberOfTellers >= 1) {
             numberOfTellers = numberOfTellers - 1;
             System.out.println("Teller fired! There are " + numberOfTellers 
                 + " employees left");
