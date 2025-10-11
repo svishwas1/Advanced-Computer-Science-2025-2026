@@ -22,6 +22,5 @@ public class CatTester {
         myCat.setName(name);
         System.out.println("The two cat's are the same now: " + myCat.equals(otherCat));
 
-    }
-
+    }  
 }

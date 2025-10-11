@@ -12,8 +12,8 @@ public class Dog {
         this.ownerName = ownerName;
         this.age = age;
         this.dogId = dogId;
-        this.dogChar = Dog.generateDogChar(this.dogId);
-        dogTag = generateDogTag();
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        dogTag = PawesomeUtils.generateDogTag(dogId, dogChar);
         stillInFacility = true;
     } 
     
@@ -22,8 +22,8 @@ public class Dog {
         ownerName = "Shriya";
         age = 3;
         dogId = 156;
-        dogChar = Dog.generateDogChar(dogId);
-        dogTag = generateDogTag();
+        dogChar = PawesomeUtils.generateDogChar(dogId);
+        dogTag = PawesomeUtils.generateDogTag(dogId, dogChar);
         stillInFacility = true; 
     }
 
@@ -68,21 +68,25 @@ public class Dog {
     }
 
     public void setDogId(int dogId) {
-        this.dogId = dogId;
+        int validatedId = PawesomeUtils.validateDogId(dogId);
+        this.dogId = validatedId;
     }
 
     public void setDogChar(char dogChar) {
-        this.dogChar = dogChar;
+        char newChar = PawesomeUtils.generateDogChar(dogId);
+        this.dogChar = newChar;
     }
 
     public void setDogTag(String dogTag) {
-        this.dogTag = dogTag;
+        String newTag = PawesomeUtils.generateDogTag(dogId, dogChar);
+        this.dogTag = newTag;
     }
 
     public void setStillInFacility(boolean stillInFacility) {
         this.stillInFacility = stillInFacility;
     }
 
+    @Override
     public String toString() {
         if (stillInFacility) {
             return 
@@ -102,34 +106,4 @@ public class Dog {
             && this.age == other.age && this.dogTag.equals(other.dogTag) 
             && this.stillInFacility == other.stillInFacility);
         }
-    
-    public String generateDogTag() {
-        return "" + dogId +  "" + dogChar;
-    }
-
-    public static char generateDogChar(int dogId) {
-        int newId = dogId;
-        int num1 = newId % 10;
-        newId = newId / 10;
-        int num2 = newId % 10;
-        newId = newId / 10;
-        int num3 = newId % 10;
-        int sum = num1 + num2 + num3;
-        return(char) ('F' + (sum % 10));
-    }
-
-    public static String pickup(Dog dog, String personName) {
-        if (dog.getOwnerName().equals(personName)) {
-            dog.stillInFacility = false;
-            return dog.getName() + " has been picked up by their owner " + personName + ".";
-        } else {
-            dog.stillInFacility = true;
-            return "Dog cannot leave because " + personName + " is not the owner.";
-        }
-    }
-
-    public static void checkIn(Dog dog, String personName) {
-        dog.stillInFacility = true;
-        dog.setOwnerName(personName);
-    }
 }
