@@ -7,7 +7,7 @@ public class PawesomeUtils {
         newId = newId / 10;
         int num3 = newId % 10;
         int sum = num1 + num2 + num3;
-        return(char) ('F' + (sum % 10));
+        return (char) ('F' + (sum % 10));
     }
 
     public static String pickup(Dog dog, String personName) {
@@ -45,23 +45,22 @@ public class PawesomeUtils {
 
     public static boolean validateDogTag(Dog dog) {
         int id = dog.getDogId();
-        int validatedId = validateDogId(id);
-        char dogChar = generateDogChar(validatedId);
-        String newDogTag = "" + validatedId + dogChar;
-        return dog.getDogTag().equals(newDogTag);
+        char expectedChar = generateDogChar(id);
+        String expected = generateDogTag(id, expectedChar);
+        return expected.equals(dog.getDogTag());
     }
 
     public static int convertAgeToHumanAge(Dog dog) {
         if (dog.getAge() == 1) {
-            return(15);
+            return (15);
         } else if (dog.getAge() == 2) {
-            return(24);
+            return (24);
         } else if (dog.getAge() > 2) {
             int additionalAge = dog.getAge() - 2;
             int newAge = 24 + (5 * additionalAge);
             return (newAge);
         } else {
-            return(0);
+            return (0);
         }
     }
 
@@ -72,7 +71,7 @@ public class PawesomeUtils {
             return (2);
         } else {
             int additionalAge = humanYears - 24;
-            int newAge = 2 + (additionalAge/5);
+            int newAge = 2 + (additionalAge / 5);
             return newAge;
         }
     }

@@ -1,8 +1,6 @@
 public class DogTester {
     public static void main(String[] args) {
         Dog snoopy = new Dog();
-        Dog orion = new Dog("Orion", "MushMush", 7, 369);
-        Dog kulfi = new Dog("Kulfi", "Nidhi", 5, 487);
         
         //Testing getters on snoopy
         snoopy.getName();
@@ -17,6 +15,8 @@ public class DogTester {
         System.out.println("New name is " + snoopy.getName());
         System.out.println("New age is " + snoopy.getAge());
 
+        //Creating new dog Orion
+        Dog orion = new Dog("Orion", "MushMush", 7, 369);
         //Testing getters on Orion
         orion.getName();
         orion.getOwnerName();
@@ -30,6 +30,8 @@ public class DogTester {
         System.out.println("New name is " + orion.getOwnerName());
         System.out.println("New dog id " + orion.getDogId());
 
+        //Creating new object kulfi
+        Dog kulfi = new Dog("Kulfi", "Nidhi", 5, 487);
         //Testing getters on kulfi 
         kulfi.getName();
         kulfi.getOwnerName();
@@ -125,6 +127,7 @@ public class DogTester {
 
         Dog d3 = new Dog("fluffy", "muffy", 3, 321);
         PawesomeUtils.validateDogId(d3.getDogId());
+        PawesomeUtils.validateDogTag(d3);
 
         //Testing converting dog age to human years for 3 new dogs
         Dog doggy1 = new Dog("Doggy1", "Owner1", 1, 749);
