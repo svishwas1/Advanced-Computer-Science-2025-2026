@@ -11,11 +11,15 @@ public class Dog {
         this.name = name;
         this.ownerName = ownerName;
         this.age = age;
+        //this.dogId = PawesomeUtils.validateDogId()
+        //this.dogChar = pawseomUtils.generateDogChar(dogId)
+        //this.dogTag = pawesomeUtils.generateDogTag(dogId, dogChar)
         this.setDogId(dogId);
         stillInFacility = true;
     } 
     
     Dog() {
+        //this("Buddy", "Shriya", 3, 156)
         name = "Buddy";
         ownerName = "Shriya";
         age = 3;
