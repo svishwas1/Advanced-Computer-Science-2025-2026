@@ -26,6 +26,7 @@ public class WorksheetOne {
     
      */
     public static void main(String[] args) {
+        /* 
         int x = 5;
         if ((x > 0 && x < 4) || x % 2 == 1)
             x++;
@@ -73,5 +74,77 @@ public class WorksheetOne {
             System.out.println("Path C");
         else
             System.out.println("Path D");
+        for(int i = 1; i < 15; i = i+3) {      
+            System.out.println(i);
+        }
+        for(int j = 11; j > -2; j = j-2) {      
+            System.out.println(j);
+        }
+
+        for(int s = 20; s < 40; s = s+3) {      
+            System.out.println(s);
+        }
+
+        for(int k = 30; k > 0; k -= 4) {      
+            System.out.println(k);
+        }
+
+        int total=0;
+        for(int c = 1; c < 15; c++) {      
+            total = total+c;
+        } 
+        System.out.println(total);
+
+        for(int v = 1; v <= 2; v++)
+            for(int g = 1; g < 4; g++)
+                System.out.println(g + v);
+
+        int complete = 0;
+        for(int h = 1; h < 5; h++) {
+        for(int f = 1; f <= h; f++)
+            complete = complete + f;
+        }
+        System.out.println(complete);
+
+        String s = "toad";
+        for(int e = 0; e < s.length(); e++) { 
+            for(int f = 0;f <= e;f++) {
+                        char c = s.charAt(f);
+                System.out.print(c);
+            }
+        System.out.println();
+        }
+
+        int size = 5;
+        for(int x = 0; x <= size; x++ ) {
+            for(int y = x; y <= size; y++ )
+                System.out.print(" ");				
+            for(int z = x; z >= 0; z--)
+                System.out.print("#");
+            System.out.println();   
+        }
+        */
+
+        double x = 0.1;
+		double y = 0.2;
+		double z = 0.3;
+
+		double sum;
+        boolean result;
+
+        sum = x + y;
+        System.out.println("Line 1: " + sum);
+
+        sum = x + y;
+        result = (sum == z);
+        System.out.println("Line 2: " + result);
+
+        sum = 0.1 + 0.2;
+        System.out.println("Line 4: " + sum);
+
+        sum = 2.0 / 3.0;
+        sum *= 3.0;
+        System.out.println("Line 7: " + sum);
+
     }
 }
