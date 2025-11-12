@@ -11,22 +11,24 @@ public class RPSGame {
 
     public void start() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your name: ");
+        System.out.print("Enter your name: ");
         String name = scan.nextLine();
         
-        System.out.println("Enter your choice: ");
+        System.out.print("Enter your choice: ");
         String choice = scan.nextLine();
         
         int attempts = 0;
-        while (!validateChoice(choice) || attempts <= 3) {
-            System.out.println("Enter your choice: ");
+        while (!validateChoice(choice) && attempts < 2) {
+            System.out.print("Enter your choice: ");
             choice = scan.nextLine();
+            attempts++;
         }
-        if (attempts > 3) {
+        if (attempts > 1) {
+            System.out.println(("You have put three invalid attempts!"
+                + " Computer will generate your move"));
             choice = generateRandomChoice();
         }
         setPlayerValues(name, choice);
-        scan.close();
     }
 
     public void setPlayerValues(String name, String choice) {
@@ -38,15 +40,12 @@ public class RPSGame {
         if (player.getChoice().equals("rock") && opponent.getChoice().equals("scissors")) {
             return true;
         }
-
         if (player.getChoice().equals("paper") && opponent.getChoice().equals("rock")) {
             return true;
         }
-
         if (player.getChoice().equals("scissors") && opponent.getChoice().equals("paper")) {
             return true;
         }
-
         return false;
     }
 
@@ -54,18 +53,18 @@ public class RPSGame {
     public String toString() {
         if (didPlayerWin()) {
             return player.getName() + " won!"
-                + "Congratulations!";
+                + " Congratulations!";
         } else {
             return "Opponent won!"
-                + "Better luck next time!";
+                + " Better luck next time!";
         }
     }
 
     public String displayResults() {
         return "== GAME RESULTS =="
-            + player.getName() + "chose" + player.getChoice() + "."
-            + "Opponent choice" + opponent.getChoice() + "."
-            + toString();
+            + "\n" + player.getName() + " chose " + player.getChoice() + "."
+            + "\nOpponent choice " + opponent.getChoice() + "."
+            + "\n" + toString();
     }
 
     public static boolean validateChoice(String choice) {
@@ -82,9 +81,5 @@ public class RPSGame {
         }
         return "scissors";
     }
-
-
-
-
 
 }

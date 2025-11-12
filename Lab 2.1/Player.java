@@ -18,13 +18,10 @@ public class Player {
         } else {
             this.choice = RPSGame.generateRandomChoice();
         }
-
     }
 
     @Override
     public String toString() {
         return name + " chose " + choice + ".";
-    }
-
-    
+    } 
 }
