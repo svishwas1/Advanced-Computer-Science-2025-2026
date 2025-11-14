@@ -32,9 +32,9 @@ public class ArrayOps {
         String contents = "";
         for (int i = 0; i < array.length; i++) {
             if (i == array.length - 1) {
-                contents = contents + i;
+                contents = contents + array[i];
             } else {
-                contents = contents + i + ", ";
+                contents = contents + array[i] + ", ";
             }   
         }
         return "[" + contents + "]";
@@ -74,7 +74,7 @@ public class ArrayOps {
         String highestStarting = array[i];
         for (int m = 0; m < array.length; m++) {
             if (array[m] != null) {
-                if(array[m].length() > highestStarting.length()) {
+                if (array[m].length() > highestStarting.length()) {
                     highestStarting = array[m];
                 }
             }
@@ -90,16 +90,27 @@ public class ArrayOps {
      * @return The average length of all the Strings in the array.
      */
     public static double averageStringLength(String[] array) {
+        int nullElements = 0;
+        if (array == null) {
+            return 0.0;
+        }
         int totalLength = 0;
         int numOfItems = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] != null) {
                 totalLength += array[i].length();
                 numOfItems++;
+            } else {
+                nullElements++;
+                totalLength = 0;
             }
         }
-        double average = (double) totalLength/numOfItems;
-        return average;
+        if (nullElements < array.length) {
+            double average = (double) totalLength / numOfItems;
+            return average;
+        } else {
+            return totalLength / array.length;
+        }
     }
 
     /**
@@ -116,13 +127,25 @@ public class ArrayOps {
      *         string.
      */
     public static int[] countLetterFrequencies(String input) {
+        if (input == null) {
+            int[] emptyArray = new int[0];
+            return emptyArray;
+        }
         int[] frequencies = new int[26];
-        for (int i = 65; i <= 122; i++) {
+        int occurences = 0;
+        int counter = 0;
+        for (int i = 97; i <= 122; i++) {
             for (int j = 0; j < input.length(); j++) {
                 int charValue = (int) input.charAt(j);
-                if (charValue )
+                if (charValue == i || charValue == i - 32) {
+                    occurences++;
+                }
             }
+            frequencies[counter] = occurences;
+            occurences = 0;
+            counter++;
         }
+        return frequencies;
     }
 
     /**
@@ -136,7 +159,17 @@ public class ArrayOps {
      * @return The updated array
      */
     public static int[] removeIntAndScoot(int[] array, int index) {
-        return new int[0];
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            if (i < index) {
+                newArray[i] = array[i];
+            } else if (i >= index && i != array.length - 1) {
+                newArray[i] = array[i + 1];
+            } else {
+                newArray[i] = 0;
+            }
+        }
+        return newArray;
     }
 
     /**
@@ -147,7 +180,19 @@ public class ArrayOps {
      * @return The resized array
      */
     public static int[] resizeIntArray(int[] array) {
-        return new int[0];
+        if (array == null) {
+            int[] emptyArray = new int[0];
+            return emptyArray;
+        }
+        int[] newArray = new int[array.length * 2];
+        for (int i = 0; i < newArray.length; i++) {
+            if (i < array.length) {
+                newArray[i] = array[i];
+            } else {
+                newArray[i] = 0;
+            }
+        }
+        return newArray;
     }
 
     /**
@@ -164,7 +209,16 @@ public class ArrayOps {
      *         each String
      */
     public static String[] addNumToStringArray(String[] array) {
-        return new String[0];
+        if (array == null) {
+            String[] empty = new String[0];
+            return empty;
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                array[i] = "#" + i + " " + array[i];
+            }
+        }
+        return array;
     }
 
     /**
@@ -175,7 +229,17 @@ public class ArrayOps {
      * @return The reversed array
      */
     public static int[] reverseIntArray(int[] array) {
-        return new int[0];
+        if (array == null) {
+            int[] nothingArray = new int[0];
+            return nothingArray;
+        }
+        int counter = 0;
+        int[] newArray = new int[array.length];
+        for (int i = array.length - 1; i >= 0; i--) {
+            newArray[counter] = array[i];
+            counter++;
+        }
+        return newArray;
     }
 
 }
