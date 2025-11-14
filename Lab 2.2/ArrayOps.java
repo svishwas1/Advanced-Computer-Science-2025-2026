@@ -92,7 +92,7 @@ public class ArrayOps {
     public static double averageStringLength(String[] array) {
         int nullElements = 0;
         if (array == null) {
-            return 0.0;
+            //return 0.0;
         }
         int totalLength = 0;
         int numOfItems = 0;
@@ -102,15 +102,14 @@ public class ArrayOps {
                 numOfItems++;
             } else {
                 nullElements++;
-                totalLength = 0;
+                totalLength += 0;
             }
         }
-        if (nullElements < array.length) {
-            double average = (double) totalLength / numOfItems;
-            return average;
-        } else {
-            return totalLength / array.length;
+        if (nullElements == array.length) {
+            numOfItems = array.length;
         }
+        double average = (double) totalLength / numOfItems;
+        return average;
     }
 
     /**
