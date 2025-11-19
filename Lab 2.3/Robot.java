@@ -7,7 +7,7 @@ public class Robot {
 
     public Robot(int[] hallwayToClean, int startingPosition) {
         // to-do: implement constructor
-        hallway = hallwayToClean;
+        hallway = fixHallway(hallwayToClean);
         position = fixStartingPosition(startingPosition);
         isFacingRight = true;
     }
@@ -17,7 +17,7 @@ public class Robot {
     }
 
     public void setHallway(int[] hallway) {
-        this.hallway = hallway;
+        this.hallway = fixHallway(hallway);
     }
 
     public int getPosition() {
@@ -25,7 +25,7 @@ public class Robot {
     }
 
     public void setPosition(int position) {
-        this.position = position;
+        this.position = fixStartingPosition(position);
     }
 
     public boolean isFacingRight() {
@@ -52,10 +52,19 @@ public class Robot {
         }
         return position;
     }
-    
+
+    public int[] fixHallway(int[] hallwayToClean) {
+        for (int i = 0; i < hallwayToClean.length; i++) {
+            if (hallwayToClean[i] < 0) {
+                hallwayToClean[i] = 0;
+            }
+        }
+        return hallwayToClean;
+    }
+
     public boolean isRobotBlockedByWall() {
         // to-do: implement this method
-        return (isFacingRight == true && position == 3 || isFacingRight == false && position == 2);
+        return (isFacingRight == true && position == 3 || isFacingRight == false && position == 0);
     }
 
     /*
@@ -63,21 +72,29 @@ public class Robot {
      */
     public void move() {
         // to-do: implement this method
-        if (hallway[position] == 0 && isFacingRight == true) {
-            hallway[position] = 0;
-            if (position == 3) {
-                isFacingRight = false;
-            } else {
-                position = position + 1;
-            }
-        } else if (hallway[position] == 0 && isFacingRight == false) {
-            if (position == 0) {
-                isFacingRight = true;
-            } else {
-                position = position - 1;
-            }
-        } else if (hallway[position] > 0) {
+        if (hallway[position] > 1) {
             hallway[position] = hallway[position] - 1;
+        } else if (hallway[position] == 1) {
+            hallway[position] = hallway[position] - 1;
+            if (isFacingRight == true && position != 3) {
+                position++;
+            } else if (isFacingRight == true && position == 3) {
+                isFacingRight = false;
+            } else if (isFacingRight == false && position != 0) {
+                position--;
+            } else {
+                isFacingRight = true;
+            }
+        } else if (hallway[position] == 0) {
+            if (isFacingRight == true && position != 3) {
+                position++;
+            } else if (isFacingRight == true && position == 3) {
+                isFacingRight = false;
+            } else if (isFacingRight == false && position != 0) {
+                position--;
+            } else {
+                isFacingRight = true;
+            }
         }
     }
 
@@ -123,14 +140,14 @@ public class Robot {
         // to-do: implement this method
         String hallwayNumbers = "";
         for (int i = 0; i < hallway.length; i++) {
-            if (i != hallway.length - 1) {
+            if (i == hallway.length - 1) {
                 hallwayNumbers = hallwayNumbers + hallway[i];
             } else {
-                hallwayNumbers = hallway[i] + " ";
+                hallwayNumbers = hallwayNumbers + hallway[i] + " ";
             }
         }
         System.out.println(hallwayNumbers);
-        for (int i = 1; i <= position + 1; i++) {
+        for (int i = 0; i < (position * 2); i++) {
             System.out.print(" ");
         }
         if (isFacingRight) {
@@ -138,6 +155,5 @@ public class Robot {
         } else {
             System.out.println("<");
         }
-
     }
 }
