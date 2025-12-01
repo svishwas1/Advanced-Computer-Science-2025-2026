@@ -8,10 +8,10 @@ public class StudentRecord {
         this.name = name;
         this.scores = scores;
     }
-
+    
     // getters
     // to-do: implement getters
-     public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -44,14 +44,15 @@ public class StudentRecord {
         return name + "'s scores: [" + scoresString + "]";
     }
 
-     public boolean comparesScores(StudentRecord other) {
+    public boolean comparesScores(StudentRecord other) {
         for (int i = 0; i < this.getScores().length; i++) {
-            if(this.getScores()[i] != other.getScores()[i]) {
+            if (this.getScores()[i] != other.getScores()[i]) {
                 return false;
             }
         }
         return true;
     }
+
     public boolean equals(StudentRecord other) {
         return (comparesScores(other) == true && other.getName().equals(this.getName())); 
     }
@@ -72,18 +73,18 @@ public class StudentRecord {
         int count = 0;
         for (int i = first; i <= last; i++) {
             total = scores[i] + total;
-            count = count++;
+            count++;
         }
-        return (double) (total/count);
+        return ((double) total / count);
     }
 
     public int getTestScore(int testNumber) {
-        int index = testNumber - 1;
-        if (index < scores.length) {
-            return (scores[index]);
-        } else {
-            return (-1);
+        if (testNumber > scores.length || testNumber < 0) {
+            return -1;
         }
+        int index = testNumber;
+        int testScore = scores[index];
+        return testScore;
     }
     /*
      * Determines if each successive value in scores is greater
@@ -91,9 +92,10 @@ public class StudentRecord {
      * 
      * @return true if student has improved, false otherwise
      */
+
     public boolean hasImproved() {
-        for (int i = 1; i <= scores.length; i++) {
-            if (scores[i-1] > scores[i]) {
+        for (int i = 1; i <= scores.length - 1; i++) {
+            if (scores[i - 1] > scores[i]) {
                 return false;
             }
         }
@@ -113,9 +115,9 @@ public class StudentRecord {
     public double getFinalAverage() {
         double average;
         if (hasImproved()) {
-            average = getAverage(scores.length/2, scores.length);
+            average = getAverage(scores.length / 2, scores.length - 1);
         } else {
-            average = getAverage(0, scores.length);
+            average = getAverage(0, scores.length - 1);
         }
         return average;
     }
