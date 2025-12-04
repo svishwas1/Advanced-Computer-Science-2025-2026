@@ -9,6 +9,11 @@ public class Course {
         this.enrolledStudents = enrolledStudents;
     }
 
+    public Course(String courseName, int maxEnrollment) {
+        this.courseName = courseName;
+        this.enrolledStudents = new StudentRecord[maxEnrollment];
+    }
+
     // getters
     // to-do: implement getters
     public String getCourseName() {
@@ -76,6 +81,57 @@ public class Course {
         }
     
         return (double) sum / enrolledStudents.length;
+    }
+
+    public boolean isFull() {
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void enrollStudent(StudentRecord student) {
+        int i = 0;
+        while (enrolledStudents[i] != null) {
+            i++;
+        } 
+        if (enrolledStudents[i] == null) {
+            enrolledStudents[i] = student;
+        }
+    }
+
+    public boolean dropStudent(StudentRecord student) {
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] != null) {
+                if (enrolledStudents[i].equals(student)) {
+                    enrolledStudents[i] = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public int countEnrolledStudents() {
+        int numStudents = 0;
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] != null) {
+                numStudents++;
+            }
+        }
+        return numStudents;
+    }
+
+    public void increaseClassSizeBy(int sizeIncrease) {
+        StudentRecord[] increasedRecords = 
+            new StudentRecord[sizeIncrease + enrolledStudents.length];
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            enrolledStudents[i] = increasedRecords[i];
+        }
+        enrolledStudents = increasedRecords;
     }
 
 }
