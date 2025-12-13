@@ -2,6 +2,14 @@ public class Course {
     // instance variables
     private String courseName;
     private StudentRecord[] enrolledStudents;
+    
+    private String[] words = new String[5]; //creating a new string array with 5 null values (if you dont know values but know length)
+    StudentRecord s1 = new StudentRecord(courseName, null);
+    StudentRecord s2 = new StudentRecord(courseName, null);
+    private StudentRecord[] student = {s1, s2};
+    private String[] names = {"Shriya", "Vishwas"}; //creating a new string array with predinfined strings (if you know everything)
+    private String[] stuff; //Creating a container for a string array but nothing in it
+
 
     // constructors
     public Course(String courseName, StudentRecord[] enrolledStudents) {

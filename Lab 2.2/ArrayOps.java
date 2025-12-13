@@ -82,6 +82,20 @@ public class ArrayOps {
         return highestStarting;
     }
 
+    public static String findLongestString2(String[] array) {
+        int highest = 0;
+        String longest = "";
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                if (array[i].length() > highest) {
+                    highest = i;
+                    longest = array[i];
+                }
+            }
+        }
+        return longest;
+    }
+
     /**
      * Calculates the average length of all the Strings in the array.
      *

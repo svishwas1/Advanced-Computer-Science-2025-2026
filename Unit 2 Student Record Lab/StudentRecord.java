@@ -45,6 +45,9 @@ public class StudentRecord {
     }
 
     public boolean comparesScores(StudentRecord other) {
+        if (this.getScores().length != other.getScores().length) {
+            return false;
+        }
         for (int i = 0; i < this.getScores().length; i++) {
             if (this.getScores()[i] != other.getScores()[i]) {
                 return false;
@@ -54,7 +57,7 @@ public class StudentRecord {
     }
 
     public boolean equals(StudentRecord other) {
-        return (comparesScores(other) == true && other.getName().equals(this.getName())); 
+        return (comparesScores(other) && other.getName().equals(this.getName())); 
     }
 
     // methods
@@ -79,7 +82,7 @@ public class StudentRecord {
     }
 
     public int getTestScore(int testNumber) {
-        if (testNumber > scores.length || testNumber < 0) {
+        if (testNumber >= scores.length || testNumber < 0) {
             return -1;
         }
         int index = testNumber;
@@ -94,7 +97,7 @@ public class StudentRecord {
      */
 
     public boolean hasImproved() {
-        for (int i = 1; i <= scores.length - 1; i++) {
+        for (int i = 1; i < scores.length; i++) {
             if (scores[i - 1] > scores[i]) {
                 return false;
             }
