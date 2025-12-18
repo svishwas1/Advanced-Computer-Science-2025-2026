@@ -27,9 +27,9 @@ e.getMessage());
     } catch (Exception e) {
     System.out.println("Divide-by-zero scenario blew up: " +
 e.getMessage());
-        }
-        runLogicBugScenario();
-        System.out.println("Debugger Demo finished.");
+    }
+    runLogicBugScenario();
+    System.out.println("Debugger Demo finished.");
 }
     private static void runParserScenario() {
         System.out.println("\n=== Scenario 1: Number parsing ===");
@@ -71,7 +71,10 @@ e.getMessage());
             count++;
             }
         }
-        int averageLength = totalLength / count;
+        int averageLength = 0;
+        if (count != 0) {
+            averageLength = totalLength / count;
+        }
         System.out.println("Average name length: " + averageLength);
     }
     private static void runLogicBugScenario() {
@@ -115,26 +118,32 @@ e.getMessage());
         return sum / (double) data.length;
     }
     public static String getUppercaseCity(String city) {
+        if (city == null) {
+            return "Null value";
+        }
         return city.toUpperCase();
     }
     public static int nameLength(String[] names, int index) {
+        if (names[index] == null) {
+            return 0;
+        }
         return names[index].length();
     }
     // Calculates the nth Fibonacci number, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
     public static int fib(int n) {
         int a = 0;
-        int b = 2;
+        int b = 1;
         if (n == 0) {
             return a;
         }
         if (n == 1) {
             return b;
         }
-        for (int i = 2; i <= n; i++) {
+        for (int i = 2; i < n; i++) {
             int next = a + b;
             a = b;
             b = next;
         }
-        return b;
-}
+        return a + b;
+    }
 }
