@@ -1,4 +1,3 @@
-
 import java.util.Random;
 
 public class Student {
@@ -58,7 +57,7 @@ public class Student {
         }
         return password;
     }
-/* 
+
     public Assignment submitAssignment(String title, String description) {
         if (assignments == null) {
             throw new IllegalStateException("Assignment storage missing.");
@@ -71,7 +70,6 @@ public class Student {
         assignments[assignmentCount] = new Assignment(title, description);
         return assignments[assignmentCount++];
     }
-*/
 
     private static boolean nameExists(String name) {
         for (int i = 0; i < NAME_COUNT; i++) {
@@ -124,3 +122,4 @@ public class Student {
         }
     }
 }
+

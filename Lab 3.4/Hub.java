@@ -1,4 +1,3 @@
-
 public class Hub {
     private Student[] students;
     private int studentCount;
