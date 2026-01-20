@@ -1,5 +1,3 @@
-
-
 public class Unit3Exercises {
     // Intended: return the average length of the strings in the array.
     public static double calculateAverageStringLength(String[] strs) {
@@ -182,9 +180,9 @@ public class Unit3Exercises {
     }
 
     public static double calculateInterest(double principal, double rate, int years) {
-        //need to check for negative principal amounts
-        if (principal < 0) {
-            throw new IllegalArgumentException("Principal amount cannot be negative");
+        //need to check for negative principal amounts, inerest rate and years
+        if (principal < 0 || rate < 0 || years <= 0) {
+            throw new IllegalArgumentException("Values cannot be negative");
         }
         for (int i = 0; i < years; i++) {
 
@@ -193,5 +191,42 @@ public class Unit3Exercises {
         return principal;
     }
 
+    public static int parsePositiveInteger(String str) {
+        int number = Integer.parseInt(str);
+        //Need an if statement to check for and throw the exception
+        if (number <= 0) {
+            throw new NumberFormatException("1");
+        }
+        return number;
+    }
 
+    public static String getArrayElement(String[] arr, int index) {
+
+        return arr[index];
+    }
+
+    public static double calculateSquareRoot(int number) {
+        double sqrt =  Math.sqrt(number);
+        return sqrt;
+    }
+
+    public static int sumArrayElements(int[] array) {
+        try {
+            int sum = 0;
+            for (int i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+            return sum;
+        } catch (NullPointerException e) {
+            System.out.println(e.toString());
+            return 0;
+        }  
+    }
+
+    public static double calculatePower(double base, int exponent) {
+         if (exponent < 0) {
+                return 1;
+            }
+        return Math.pow(base, exponent);
+    }
 }

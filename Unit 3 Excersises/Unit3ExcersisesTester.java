@@ -46,8 +46,30 @@ public class Unit3ExcersisesTester {
         testFindLongestWordOne();
         testFindLongestWordTwo();
         testFindLongestWordThree();
-    
 
+        //Running tests for calculateInterest
+        testCalculateInterestOne();
+        testCalculateInterestTwo();
+        testCalculateInterestThree();
+        testCalculateInterestFour();
+
+        //Running tests for parsePositiveInteger
+        testParsePositiveIntegerOne();
+        testParsePositiveIntegerTwo();
+        testParsePositiveIntegerThree();
+        
+        //Running tests for getArrayElement
+        testGetArrayElement();
+
+        //Running tests for calculateSquareRoot
+        testCalculateSquareRoot();
+    
+        //Running tests for sumArrayElements
+        testSumArrayElementsOne();
+        testSumArrayElementsTwo();
+
+        //Running tests for calculatePower
+        testCalculatePower();
     }
 
     public static void testCalculateStringLengthAverageOne() {
@@ -314,10 +336,10 @@ public class Unit3ExcersisesTester {
 
     public static void testCalculateInterestOne() {
         //Test Case - Main Case:
-        double interest = Unit3Exercises.calculateInterest(10000, 5.0, 3);
-        System.out.println("Expected 1500:" + interest);
-        double interest1 = Unit3Exercises.calculateInterest(20000, 10.0, 4);
-        System.out.println("Expected 8000:" + interest1);
+        double interest = Unit3Exercises.calculateInterest(10000, 1.0, 1);
+        System.out.println("Expected 10100.0 :" + interest);
+        double interest1 = Unit3Exercises.calculateInterest(20000, 10.0, 2);
+        System.out.println("Expected 24200.0:" + interest1);
     }
 
     public static void testCalculateInterestTwo() {
@@ -329,30 +351,117 @@ public class Unit3ExcersisesTester {
             
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an error for a negative initial amount as excpected.");
+            System.out.println("The method threw an error for a negative principal amount as excpected.");
         }
     }
 
-     public static void testCalculateInterestThree() {
+    public static void testCalculateInterestThree() {
         //Test Case - Edge Case:
         try {
             System.out.print("Expected exception: ");
-            double interest = Unit3Exercises.calculateInterest(-15000, 7.0, 10);
+            double interest = Unit3Exercises.calculateInterest(-15000, -2, 10);
             System.out.println(interest);
             
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an error for a negative initial amount as excpected.");
+            System.out.println("The method threw an error for a negative interest rate as excpected.");
         }
     }
 
+    public static void testCalculateInterestFour() {
+        //Test Case - Edge Case:
+        try {
+            System.out.print("Expected exception: ");
+            double interest = Unit3Exercises.calculateInterest(10000, 2.0, -8);
+            System.out.println(interest);
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an error for a non positive number of years as excpected.");
+        }
+    }
 
+    public static void testParsePositiveIntegerOne() {
+        //Test Case - Main Case:
+        String str = "5";
+        System.out.println("Expected 5: " + Unit3Exercises.parsePositiveInteger(str));
+    }
 
+    public static void testParsePositiveIntegerTwo() {
+        //Test Case - Edge Case:
+        try {
+            String str = "-3";
+            System.out.println("Expected: exception" + Unit3Exercises.parsePositiveInteger(str));
+        } catch (NumberFormatException e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an error for a negative number as expected");
+        }
+    }
 
+    public static void testParsePositiveIntegerThree() {
+        //Test Case - Edge Case:
+        try {
+            String str = "0";
+            System.out.println("Expected exception: " + Unit3Exercises.parsePositiveInteger(str));
+        } catch (NumberFormatException e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an error because the number is 0 as expected");
+        }
+    }
 
+    public static void testGetArrayElement() {
+        //Test Case - Edge Case:
+        try {
+            String[] str = new String[] {"Hello", "My", "Name", "Is"};
+            int index = 10;
+            System.out.println("Expected exception: " + Unit3Exercises.getArrayElement(str, index));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an error because of an out of bounds index as expected");
+        }
+    }
 
+    public static void testCalculateSquareRoot() {
+        //Test Case - Edge Case:
+        try {
+            int num = -2;
+            if (num < 0) {
+                System.out.print("Expected exception: ");
+                throw new IllegalArgumentException("Number to sqrt cannot be negative.");
+            }
+            double sqrt = Unit3Exercises.calculateSquareRoot(num); 
+            System.out.println(sqrt);
+        }   catch (IllegalArgumentException e) {
+            System.out.println(e);
+            System.out.println("The method threw an error because the sqrt was Double.NaN as expected");
+        }
+    }
 
+    public static void testSumArrayElementsOne() {
+        //Test Case - Main Case:
+        int[] arr = new int[] {1, 3, 9};
+        System.out.println("Expected 13: " + Unit3Exercises.sumArrayElements(arr));
+    }
 
+    public static void testSumArrayElementsTwo() {
+        //Test Case - Edge Case:
+        int[] arr = null;
+        System.out.println("Expected 0: " + Unit3Exercises.sumArrayElements(arr));
+    }
 
-
+    public static void testCalculatePower() {
+        //Test Case - Edge Case:
+        try {
+            int exponent = -2;
+            double base = 10;
+            Unit3Exercises.calculatePower(base, exponent);
+            if (exponent < 0) {
+                System.out.print("Expected exception: ");
+                throw new IllegalArgumentException("Exponent cannot be negative");
+            } 
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an error because of a negative exponent as expected");
+        }
+    }
 }
