@@ -11,13 +11,15 @@ public class ArrayVersusArrayList {
         System.out.println("== Testing ArrayLists lastComesFirst() ==");
         testLastComesFirst2();
         System.out.println();
-
+        
         System.out.println("== Testing Arrays firstComesLast() ==");
         testFirstComesLast1();
         System.out.println();
 
+    
         System.out.println("== Testing ArrayLists firstComesLast() ==");
         testFirstComesLast2();
+
 
     }
 
@@ -26,7 +28,19 @@ public class ArrayVersusArrayList {
     // other elements to the right.
     public static void lastComesFirst(String[] arr) {
         // to-do: implement method
-
+        if (arr == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
+        if (arr.length != 0) {
+            String firstValue = arr[arr.length - 1];
+            for (int i = arr.length - 1; i >= 0; i--) {
+                if (i == 0) {
+                    arr[i] = firstValue;
+                } else {
+                    arr[i] = arr[i - 1];
+                }
+            }
+        }
     }
 
     // modifies the given array by moving the last element to the first index, and
@@ -34,7 +48,13 @@ public class ArrayVersusArrayList {
     // other elements to the right.
     public static void lastComesFirst(ArrayList<String> arrList) {
         // to-do: implement method
-
+        if (arrList == null) {
+            throw new IllegalArgumentException("ArrayList cannot be null");
+        }
+        if (!arrList.isEmpty()) {
+            arrList.add(0, arrList.get(arrList.size() - 1));
+            arrList.remove(arrList.size() - 1);
+        }
     }
 
     // modifies the given array by moving the first element to the last index, and
@@ -42,7 +62,19 @@ public class ArrayVersusArrayList {
     // other elements to the left.
     public static void firstComesLast(String[] arr) {
         // to-do: implement method
-
+        if (arr == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
+        if (arr.length != 0) {
+            String lastValue = arr[0];
+            for (int i = 0; i < arr.length; i++) {
+                if (i == arr.length - 1) {
+                    arr[i] = lastValue;
+                } else {
+                    arr[i] = arr[i + 1];
+                }
+            }
+        }
     }
 
     // modifies the given array by moving the first element to the last index, and
@@ -50,7 +82,14 @@ public class ArrayVersusArrayList {
     // other elements to the left.
     public static void firstComesLast(ArrayList<String> arrList) {
         // to-do: implement method
-
+        if (arrList == null) {
+            throw new IllegalArgumentException("ArrayList cannot be null");
+        }
+        if (!arrList.isEmpty()) {
+            String lastValue = arrList.get(0);
+            arrList.remove(0);
+            arrList.add(arrList.size(), lastValue);   
+        }
     }
 
     // Test Methods
