@@ -14,11 +14,11 @@ public class MemberTicket extends Ticket {
     }
 
     public double getTotalPrice() {
-        return ((super.getBasePrice() * super.getTax()) * super.getTicketCount()) * (1 - MEMBER_DISCOUNT);
+        return ((super.getBasePrice() + (super.getTax() * super.getBasePrice())) * super.getTicketCount()) * (1 - MEMBER_DISCOUNT);
     }
 
     public void printMemberBenefits() {
-        System.out.println("Includes access to special discount and complimentary refreshments.");
+        System.out.println("Includes access to special discounts and complimentary refreshments.");
     }
 
     @Override

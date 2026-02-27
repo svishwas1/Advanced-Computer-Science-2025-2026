@@ -8,7 +8,7 @@ public class StandardTicket extends Ticket{
     }
 
     public double getTotalPrice() {
-        return (super.getBasePrice() * super.getTax()) * super.getTicketCount();
+        return (super.getBasePrice() + (super.getTax() * super.getBasePrice())) * super.getTicketCount();
     } 
 
     @Override
