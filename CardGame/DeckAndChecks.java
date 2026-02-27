@@ -120,38 +120,44 @@ public class DeckAndChecks {
         // TODO
         ArrayList<Card> deck = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 5; i++) {
-            String name = scanner.nextLine();
-            String type = scanner.nextLine();
-            int strength = scanner.nextInt();
-            int toughness = scanner.nextInt();
-            String Bastion = scanner.nextLine();
-            String Ripple = scanner.nextLine();
-            String Cleave = scanner.nextLine();
+        boolean validation = false;
+        while (!validation) {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("");
+                String name = scanner.nextLine();
+                String type = scanner.nextLine();
+                int strength = scanner.nextInt();
+                int toughness = scanner.nextInt();
+                String Bastion = scanner.nextLine();
+                String Ripple = scanner.nextLine();
+                String Cleave = scanner.nextLine();
 
-            CardType actualType;
-            if (type.equals("Granite")) {
-                actualType = CardType.GRANITE;
-            } else if (type.equals("Parchment")) {
-                actualType = CardType.PARCHMENT;
-            } else {
-                actualType = CardType.BLADE;
-            }
+                CardType actualType;
+                if (type.equals("Granite")) {
+                    actualType = CardType.GRANITE;
+                } else if (type.equals("Parchment")) {
+                    actualType = CardType.PARCHMENT;
+                } else {
+                    actualType = CardType.BLADE;
+                }
 
-            boolean isBastion;
-            isBastion = Bastion.equals("y");
+                boolean isBastion;
+                isBastion = Bastion.equals("y");
 
-            boolean isCleave;
-            isCleave = Cleave.equals("y");
+                boolean isCleave;
+                isCleave = Cleave.equals("y");
 
-            boolean isRipple;
-            isRipple = Ripple.equals("y");
+                boolean isRipple;
+                isRipple = Ripple.equals("y");
 
-            NamedCard card = new NamedCard(name, actualType, strength, toughness, isBastion, isRipple, isCleave);
-            deck.add(card);
-            deck.isVa
-
+                NamedCard card = new NamedCard(name, actualType, strength, toughness, isBastion, isRipple, isCleave);
+                deck.add(card);
+                if (isValidDeck(deck)) {
+                    validation = true;
+                }
+            }  
         }
+        return deck;
     }
 
     // ----------------------------
