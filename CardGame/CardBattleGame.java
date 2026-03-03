@@ -11,30 +11,28 @@ public class CardBattleGame {
     // Winner: Player/Bot
     public static String playGame(ArrayList<Card> playerDeck, ArrayList<Card> botDeck, Random rng) {
         // TODO
-        String display = "";
-        display = display + "== CARD CLASH ==";
+        System.out.println("== CARD CLASH ==");
         PlayerState self = new PlayerState("self", playerDeck);
         PlayerState bot = new PlayerState("bot", botDeck);
         int randomInt = rng.nextInt();
         if (randomInt % 2 == 0) {
-            display = display + "\nStarting: player";
+            System.out.println("Starting: player");
         } else {
-            display = display + "\nStarting: Bot";
+            System.out.println("Starting: Bot");
         }
         while (self.hasAnythingLeft() && bot.hasAnythingLeft()) {
             if (randomInt % 2 == 0) {
-                drawAndPlayIfNeeded(bot, self);              
+                drawAndPlayIfNeeded(self, bot);              
             } else {
-                drawAndPlayIfNeeded(self, bot);
+                drawAndPlayIfNeeded(bot, self);
             }
             randomInt++;
         } 
         if (self.hasAnythingLeft()) {
-            display = display + "\nWinner: Player";
+            return "Bot";
         } else {
-            display = display + "\nWinner: Bot";
+            return "Player";
         }
-        return display;
     }
 
     // ----- helpers you may implement or use -----
