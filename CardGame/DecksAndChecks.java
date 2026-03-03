@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DeckAndChecks {
+public class DecksAndChecks {
 
     // ----------------------------
     // CHECKERS (students implement)
@@ -102,13 +102,13 @@ public class DeckAndChecks {
         ArrayList<Card> deck = new ArrayList<>();
         NamedCard card1 = new NamedCard("card1", CardType.GRANITE, 3, 3, false, false, false);
         deck.add(card1);
-        NamedCard card2 = new NamedCard("card2", CardType.PARCHMENT, 1, 3, false, false, false);
+        NamedCard card2 = new NamedCard("card2", CardType.PARCHMENT, 3, 3, false, false, false);
         deck.add(card2);
-        NamedCard card3 = new NamedCard("card3", CardType.BLADE, 1, 2, false, false, false);
+        NamedCard card3 = new NamedCard("card3", CardType.BLADE, 3, 3, false, false, false);
         deck.add(card3);
-        NamedCard card4 = new NamedCard("card4", CardType.BLADE, 2, 2, false, false, false);
+        NamedCard card4 = new NamedCard("card4", CardType.BLADE, 3, 3, false, false, false);
         deck.add(card4);
-        NamedCard card5 = new NamedCard("card5", CardType.GRANITE, 1, 1, false, false, false);
+        NamedCard card5 = new NamedCard("card5", CardType.GRANITE, 3, 3, false, false, false);
         deck.add(card5);
         return deck;
     }

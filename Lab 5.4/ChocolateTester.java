@@ -6,7 +6,7 @@ public class ChocolateTester {
         r.addItem(new DarkBar(45), 1);
         r.addItem(new MatchaBar(45), 1);
         r.addItem(new CocoaSticker(), 3);
-        r.addItem(new TShirt(), 1);
+        //r.addItem(new TShirt(), 1);
         r.printReceipt();
     }
 }

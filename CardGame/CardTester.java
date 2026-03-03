@@ -25,7 +25,6 @@ public class CardTester {
         try {
             ArrayList<Card> player = BotFactory.buildBotDeck(); // placeholder deck
             ArrayList<Card> bot = BotFactory.buildBotDeck();
-
             System.out.println("\n== RUNNING GAME (if implemented) ==");
             String winner = CardBattleGame.playGame(player, bot, new Random(7));
             System.out.println("Returned winner: " + winner);

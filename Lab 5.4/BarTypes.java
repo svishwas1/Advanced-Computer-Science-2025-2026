@@ -12,7 +12,7 @@ class MilkBar extends ChocolateBar {
     @Override
     protected String getFlavorName() {
         // TODO: return the correct flavor name
-        return "milk";
+        return "Milk";
     }
 
     @Override

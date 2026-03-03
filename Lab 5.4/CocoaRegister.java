@@ -38,13 +38,13 @@ public class CocoaRegister {
     public double getTax() {
         // TODO:
         // tax = subtotal * TAX_RATE, rounded to 2 decimals
-        return getSubtotal() * TAX_RATE;
+        return ChocolateBar.round2(getSubtotal() * TAX_RATE);
     }
 
     public double getTotal() {
         // TODO:
         // total = subtotal + tax, rounded to 2 decimals
-        return getSubtotal() + getTax();
+        return ChocolateBar.round2(getSubtotal() + getTax());
     }
 
     public void printReceipt() {
@@ -55,9 +55,13 @@ public class CocoaRegister {
         System.out.println("== COCOA CORNER ==");
         // - For each line item i:
         for (int i = 0; i < items.size(); i++) {
-            System.out.println((i+1) + ". " + getName());
-            System.out.println(getSubtotal() + getTotal() + getTax());
+            System.out.println((i+1) + ". " + items.get(i).getName() 
+                + " x" + quantities.get(i) + " @ $" + ChocolateBar.money(items.get(i).getBasePrice()) 
+                + " = $" + ChocolateBar.money(items.get(i).getBasePrice() * quantities.get(i)));
         }
+        System.out.println("Subtotal: $" + ChocolateBar.money(getSubtotal()));
+        System.out.println("Tax: $" + ChocolateBar.money(getTax()));
+        System.out.println("Total: $" + ChocolateBar.money(getTotal()));
         //   (i+1) + ". " + name + " x" + qty + " @ $" + unit + " = $" + lineTotal
         // - Use ChocolateBar.money(...) for all currency formatting
     }
