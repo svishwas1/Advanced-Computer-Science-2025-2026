@@ -1,6 +1,7 @@
 //import java.lang.runtime.TemplateRuntime;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ContactList extends AbstractList {
 
@@ -122,24 +123,55 @@ public class ContactList extends AbstractList {
     }
 
     public void sortByFirstName() {
-        
+        Collections.sort(contactList);   
     }
 
     public void sortByLastName() {
         for (int i = 0; i < contactList.size(); i++) {
-            if (contactList.get(i + 1).compareTo(contactList.get(i)) < 1) {
+            for (int j = i; j < contactList.size(); j++) {
+                if (contactList.get(i).getLastName().compareTo(contactList.get(j).getLastName()) == -1) {
+                    Contact holder = contactList.get(i);
+                    contactList.set(j, holder);
+                    contactList.set(i, contactList.get(j));
+                
+                } else if (contactList.get(i).getLastName().compareTo(contactList.get(j).getLastName()) == 0) {
+                    if (contactList.get(i).getFirstName().compareTo(contactList.get(j).getFirstName()) == -1) {
+                        Contact holder = contactList.get(i);
+                        contactList.set(j, holder); 
+                        contactList.set(i, contactList.get(j)); 
+                                         
+                    } else if (contactList.get(i).getFirstName().compareTo(contactList.get(j).getFirstName()) == 0) {
+                        if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(j).getTelephoneNumber()) == -1) {
+                            Contact holder = contactList.get(i);
+                            contactList.set(j, holder); 
+                            contactList.set(i, contactList.get(j));
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    public void sortByTelephoneNumber() {
+        ContactList sorted = new ContactList();
+        sorted.add(contactList.get(0));
+        for (int i = 1; i < contactList.size(); i++) {
+            for (int j = 0; j < contactList.size(); j++) {
+                if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i).getTelephoneNumber()) == -1) {
+                    
+                }
             }
         }
 
     }
 
-    public void sortByTelephoneNumber() {
-
-    }
-
-    public void searchContact() {
-
+    public Contact searchContacts(String telephoneNumber) {
+        for (Contact contact: contactList) {
+            if (contact.getTelephoneNumber().equals(telephoneNumber)) {
+                return contact;
+            }
+        }
+        return null;
     }
 
 }

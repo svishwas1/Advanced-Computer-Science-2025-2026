@@ -42,9 +42,26 @@ public class Contact implements Comparable{
     }
 
     public int compareTo(Object object) {
-        Contact myContact = (Contact)object;
-        return this.compareTo(myContact);
-
+        Contact otherContact = (Contact)object;
+        if (otherContact.getFirstName().compareTo(this.getFirstName()) == -1) {
+            return -1;    
+        } else if (otherContact.getFirstName().compareTo(this.getFirstName()) == 1) {
+            return 1;
+        } else {
+            if (otherContact.getLastName().compareTo(this.getLastName()) == -1) {
+                return - 1;
+            } else if (otherContact.getLastName().compareTo(this.getLastName()) == 1) {
+                return 1;
+            } else {
+                if (otherContact.getTelephoneNumber().compareTo(this.getTelephoneNumber()) == -1) {
+                    return -1;
+                } else if (otherContact.getTelephoneNumber().compareTo(this.getTelephoneNumber()) == 1) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 
     @Override
