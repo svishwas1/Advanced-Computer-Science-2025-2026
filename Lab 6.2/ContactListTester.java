@@ -6,9 +6,11 @@ public class ContactListTester {
 
 
         // A list of unsorted names
-        ArrayList<String> names = new ArrayList<String>(
-                Arrays.asList("Alice", "Tommy", "Bobby", "Annabelle", "Samantha", "Samuel", "Alice"));
-
+        Contact c1 = new Contact("Alice", "Tommy", "848-458-5858");
+        Contact c2 = new Contact("Bobby", "Annabelle", "484-484-3839");
+        Contact c3 = new Contact("Samantha", "Samuel", "939-484-8443");
+        ArrayList<Contact> names = new ArrayList<Contact>(
+                Arrays.asList());
 
         // initializing a contact list
         ContactList contactList = new ContactList();
@@ -16,11 +18,9 @@ public class ContactListTester {
 
         System.out.println("=== Testing Adding Names ===");
         // testing the add method
-        for (String name : names) {
-            contactList.add(name);
-            System.out.println(contactList);
-        }
-
+        contactList.add(c1);
+        contactList.add(c2);
+        contactList.add(c3);
 
         // Current contact list should be 
         // Contact List: [Alice, Annabelle, Bobby, Samantha, Samuel, Tommy]

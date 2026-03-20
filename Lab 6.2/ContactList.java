@@ -155,14 +155,13 @@ public class ContactList extends AbstractList {
     public void sortByTelephoneNumber() {
         ContactList sorted = new ContactList();
         sorted.add(contactList.get(0));
-        for (int i = 1; i < contactList.size(); i++) {
-            for (int j = 0; j < contactList.size(); j++) {
-                if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i).getTelephoneNumber()) == -1) {
-                    
-                }
+        for (int i = 1; i < contactList.size() - 1; i++) {
+            if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i).getTelephoneNumber()) == -1
+                    && contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i + 1).getLastName()) == 1) {
+                    sorted.add(contactList.get(i));  
+                    return; 
             }
         }
-
     }
 
     public Contact searchContacts(String telephoneNumber) {
@@ -173,5 +172,4 @@ public class ContactList extends AbstractList {
         }
         return null;
     }
-
 }

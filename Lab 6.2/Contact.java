@@ -6,15 +6,31 @@ public class Contact implements Comparable{
     Contact(String firstName, String lastName, String telephoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        if (validateTelephoneNumber()) {
+        if (validateTelephoneNumber(telephoneNumber)) {
             this.telephoneNumber = telephoneNumber;
         } else {
             throw new IllegalArgumentException("Incorrect telephone format"); 
         }
     }
 
-    public boolean validateTelephoneNumber() {
-        return (telephoneNumber.charAt(3) == '-' && telephoneNumber.charAt(7) == '-');
+    public boolean validateTelephoneNumber(String telephoneNumber) {
+        if (!(telephoneNumber.charAt(3) == '-' || telephoneNumber.charAt(7) == '-')) {
+            return false;
+        }
+        for (int k = 0; k < 9; k = k + 4) {
+            try {
+                if (k == 8) {
+                    String s = telephoneNumber.substring(k);
+                    int n = Integer.parseInt(s);
+                } else {
+                    String s = telephoneNumber.substring(k, k + 3);
+                    int n = Integer.parseInt(s);
+                }
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getFirstName() {
