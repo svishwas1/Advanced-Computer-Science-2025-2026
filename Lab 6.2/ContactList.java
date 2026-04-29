@@ -43,8 +43,9 @@ public class ContactList extends AbstractList {
      */
     public boolean add(Contact contact) {
         System.out.println("+ Adding " + contact.getFirstName());
+
         for (Contact person : contactList) {
-            if (person.getFirstName().equals(contact.getFirstName()) || person.getTelephoneNumber().equals(contact.getTelephoneNumber())) {
+            if (person.getTelephoneNumber().equals(contact.getTelephoneNumber())) {
                 return false;
             }
         }
@@ -72,15 +73,14 @@ public class ContactList extends AbstractList {
 
     // to-do: remove(String name)
     /** removes name from the contact list and keeps list alphabetized */
-    public boolean remove(String name) {
-        System.out.println("- Removing " + name);
-        for (int i = 0; i < contactList.size(); i++) {
-            if (name.equals(contactList.get(i).getFirstName())) {
-                contactList.remove(i);
-                return true;
-            }
+    public boolean remove(Contact contact) {
+        int index = contactList.indexOf(contact);
+        if (index != -1) {
+            contactList.remove(index);
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     // to-do: remove(ArrayList<String> names)
@@ -100,13 +100,13 @@ public class ContactList extends AbstractList {
 
     // to-do: get(int index)
     /** returns the name at the specified index */
-    public String get(int index) {
+    public Contact get(int index) {
         for (int i = 0; i < contactList.size(); i++) {
             if (i == index) {
-                return contactList.get(i).getFirstName();
+                return contactList.get(i);
             }
         }
-        throw new IllegalArgumentException("Name does not exist");
+        throw new IllegalArgumentException("Contact does not exist");
     }
 
     // to-do: size()
@@ -126,40 +126,47 @@ public class ContactList extends AbstractList {
         Collections.sort(contactList);   
     }
 
-    public void sortByLastName() {
-        for (int i = 0; i < contactList.size(); i++) {
-            for (int j = i; j < contactList.size(); j++) {
-                if (contactList.get(i).getLastName().compareTo(contactList.get(j).getLastName()) == -1) {
-                    Contact holder = contactList.get(i);
-                    contactList.set(j, holder);
-                    contactList.set(i, contactList.get(j));
-                
-                } else if (contactList.get(i).getLastName().compareTo(contactList.get(j).getLastName()) == 0) {
-                    if (contactList.get(i).getFirstName().compareTo(contactList.get(j).getFirstName()) == -1) {
-                        Contact holder = contactList.get(i);
-                        contactList.set(j, holder); 
-                        contactList.set(i, contactList.get(j)); 
-                                         
-                    } else if (contactList.get(i).getFirstName().compareTo(contactList.get(j).getFirstName()) == 0) {
-                        if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(j).getTelephoneNumber()) == -1) {
-                            Contact holder = contactList.get(i);
-                            contactList.set(j, holder); 
-                            contactList.set(i, contactList.get(j));
-                        }
-                    }
+    public void swap(int newSmall, int oldSmall) {
+        Contact holder = contactList.get(newSmall);
+        contactList.set(newSmall, contactList.get(oldSmall));
+        contactList.set(oldSmall, holder);
+    }
+    
+    public int compare(int j, int indexLower) {
+        if (contactList.get(j).getLastName().compareTo(contactList.get(indexLower).getLastName()) < 0) {
+            return - 1;
+        } else if (contactList.get(j).getLastName().compareTo(contactList.get(indexLower).getLastName()) == 0) {
+            if (contactList.get(j).getFirstName().compareTo(contactList.get(indexLower).getFirstName()) < 0){
+                return -1;
+            } else {
+                if (contactList.get(j).getTelephoneNumber().compareTo(contactList.get(indexLower).getTelephoneNumber()) < 0) {
+                    return -1;
                 }
             }
+        }
+        return 1;
+    }
+
+    public void sortByLastName() {
+        for (int i = 0; i < contactList.size(); i++) {
+            int indexLower = i;
+            for (int j = i + 1; j < contactList.size(); j++) {
+                if (compare(j, indexLower) < 0) {
+                    indexLower = j;
+                }
+            }
+            swap(indexLower, i);
         }
     }
 
     public void sortByTelephoneNumber() {
-        ContactList sorted = new ContactList();
-        sorted.add(contactList.get(0));
-        for (int i = 1; i < contactList.size() - 1; i++) {
-            if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i).getTelephoneNumber()) == -1
-                    && contactList.get(i).getTelephoneNumber().compareTo(contactList.get(i + 1).getLastName()) == 1) {
-                    sorted.add(contactList.get(i));  
-                    return; 
+        for (int i = 1; i < contactList.size(); i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(j).getTelephoneNumber()) < 0) {
+                    swap(i, j);  
+                } else if (contactList.get(i).getTelephoneNumber().compareTo(contactList.get(j).getTelephoneNumber()) > 0) {
+                    break;
+                }
             }
         }
     }

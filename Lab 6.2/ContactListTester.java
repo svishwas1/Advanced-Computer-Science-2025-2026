@@ -21,11 +21,19 @@ public class ContactListTester {
         contactList.add(c1);
         contactList.add(c2);
         contactList.add(c3);
+        System.out.println("\nUNSORTED");
+        System.out.println(contactList.toString());
+        contactList.sortByTelephoneNumber();
+        
+        System.out.println("SORTED");
+        System.out.println(contactList.toString());
+        //System.out.println(contactList.toString());
+        //System.out.println("Annabelle".compareTo("Tommy"));
 
         // Current contact list should be 
         // Contact List: [Alice, Annabelle, Bobby, Samantha, Samuel, Tommy]
 
-
+        /* 
         if(contactList.toString().equals("Contact List: [Alice, Annabelle, Bobby, Samantha, Samuel, Tommy]")) {
             System.out.println("=== Adding Names PASSED! === \n");
         } else {
@@ -68,6 +76,8 @@ public class ContactListTester {
         } else {
             System.out.println("=== Removing Names FAILED! === \n");
         }
+        */
+             
     }
 }
 

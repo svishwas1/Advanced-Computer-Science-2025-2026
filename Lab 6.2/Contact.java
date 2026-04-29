@@ -9,7 +9,7 @@ public class Contact implements Comparable{
         if (validateTelephoneNumber(telephoneNumber)) {
             this.telephoneNumber = telephoneNumber;
         } else {
-            throw new IllegalArgumentException("Incorrect telephone format"); 
+            throw new IllegalArgumentException("Incorrect telephone format");
         }
     }
 
@@ -59,19 +59,19 @@ public class Contact implements Comparable{
 
     public int compareTo(Object object) {
         Contact otherContact = (Contact)object;
-        if (otherContact.getFirstName().compareTo(this.getFirstName()) == -1) {
+        if (this.getFirstName().compareTo(otherContact.getFirstName()) == -1) {
             return -1;    
-        } else if (otherContact.getFirstName().compareTo(this.getFirstName()) == 1) {
+        } else if (this.getFirstName().compareTo(otherContact.getFirstName()) == 1) {
             return 1;
         } else {
-            if (otherContact.getLastName().compareTo(this.getLastName()) == -1) {
+            if (this.getLastName().compareTo(otherContact.getLastName()) == -1) {
                 return - 1;
-            } else if (otherContact.getLastName().compareTo(this.getLastName()) == 1) {
+            } else if (this.getLastName().compareTo(otherContact.getLastName()) == 1) {
                 return 1;
             } else {
-                if (otherContact.getTelephoneNumber().compareTo(this.getTelephoneNumber()) == -1) {
+                if (this.getTelephoneNumber().compareTo(otherContact.getTelephoneNumber()) == -1) {
                     return -1;
-                } else if (otherContact.getTelephoneNumber().compareTo(this.getTelephoneNumber()) == 1) {
+                } else if (this.getTelephoneNumber().compareTo(otherContact.getTelephoneNumber()) == 1) {
                     return 1;
                 } else {
                     return 0;
@@ -82,8 +82,11 @@ public class Contact implements Comparable{
 
     @Override
     public String toString() {
-        return "First Name: " + firstName 
-            + "\nLast Name: " + lastName
-            + "\n Telephone Number: " + telephoneNumber;
+        return 
+            "First Name: " + firstName 
+            + "Last Name: "
+            + lastName
+            + "\n Telephone Number: " + 
+            telephoneNumber;
     }
 }

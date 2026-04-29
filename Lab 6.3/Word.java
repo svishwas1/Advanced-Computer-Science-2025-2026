@@ -5,13 +5,22 @@ public class Word {
     private String sortedWord;
     
     public Word(String originalWord) {
-        this.originalWord = originalWord;
+        if (validate(originalWord)) {
+            this.originalWord = originalWord;
+        } else {
+            throw new IllegalArgumentException("Invalid word");
+        }
+        sortedWord = sorted();
     }
 
     public boolean validate(String word) {
-        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        String lowerWord = word.toLowerCase();
         for (int i = 0; i < word.length(); i++) {
+            if (lowerWord.charAt(i) < 'a' && lowerWord.charAt(i) > 'z' ) {
+                return false;
+            }
         }
+        return true;
     }
 
     public String getOriginalWord() {
@@ -22,11 +31,29 @@ public class Word {
         return sortedWord;
     }
 
-    public void sorted() {
+    public String sorted() {
         String lowerWord = originalWord.toLowerCase();
-        for (int i = 0; i < lowerWord.length(); i++) {
-            
+        ArrayList<Character> letters = new ArrayList<>();
+        for (int j = 0; j < lowerWord.length(); j++) {
+            letters.add(lowerWord.charAt(j));
         }
+        for (int i = 0; i < letters.size(); i++) {
+            int lowerIndex = i; 
+            for (int j = i+1; j < letters.size(); j++) {
+                if (letters.get(j) < letters.get(lowerIndex)) {
+                    lowerIndex = j;
+                }
+            }
+            char holder = letters.get(lowerIndex);
+            letters.set(lowerIndex, letters.get(i));
+            letters.set(i, holder);
+        }
+        
+        String sorted = "";
+        for (int k = 0; k < letters.size(); k++) {
+            sorted = sorted + letters.get(k);
+        }
+        return sorted;
 
     }
 }
