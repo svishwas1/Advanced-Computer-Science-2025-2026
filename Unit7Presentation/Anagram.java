@@ -13,7 +13,7 @@ public class Anagram extends GameTask{
     
     public boolean padlock() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Padlock:");
+        System.out.println("Enter Padlock: ");
         int input = scanner.nextInt();
         if (input == num) {
             System.out.println("Correct!");
@@ -24,17 +24,14 @@ public class Anagram extends GameTask{
     }
 
     public void play() {
-        System.out.println("You have made it to the second room but theres still two to go");
+        System.out.println("You have made it to the second room but there is still two to go");
         System.out.println("In this room you notice on the wall a list of words: ");
         
         for (int i = 0; i < anagrams1.length; i++) {
             System.out.println(anagrams1[i]);
         }
         System.out.println("You have another padlock here, but this one only requires one number: ");
-        if (padlock()) {
-            return;
-        } else {
-            padlock();
+        while(!padlock()) {     
         }
     }
 

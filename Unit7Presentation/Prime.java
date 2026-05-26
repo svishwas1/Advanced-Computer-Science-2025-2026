@@ -13,7 +13,7 @@ public class Prime extends GameTask{
 
      public boolean padlock() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Padlock:");
+        System.out.println("Enter Padlock: ");
         int input = scanner.nextInt();
         if (input == primeKey) {
             System.out.println("Correct!");
@@ -25,15 +25,13 @@ public class Prime extends GameTask{
 
     public void play() {
         System.out.println("Congrats! You're almost there, you have entered the third room");
-        System.out.println("In this room, there are the control panels for the submarine, each reading a different number");
+        System.out.println("In this room, you can see the control panels for the submarine, each reading a different number: ");
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
         }
         System.out.println("This is your final padlock it only requires a " + numberOfPrime + " digit number");
-        if (padlock()) {
-            return;
-        } else {
-            padlock();
+        while (!padlock()) {
+
         }
     }
 
@@ -55,7 +53,6 @@ public class Prime extends GameTask{
                 pnum = pnum + numbers[i];
             } 
         }
-        System.out.println(pnum);
         return Integer.parseInt(pnum);
 
     }

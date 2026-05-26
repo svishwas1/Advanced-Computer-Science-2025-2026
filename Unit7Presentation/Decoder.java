@@ -17,7 +17,7 @@ public class Decoder extends GameTask{
 
     public boolean padlock() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Packlock:");
+        System.out.println("Enter Padlock: ");
         String input = scanner.nextLine();
         if (input.equals(key1)) {
             System.out.println("Correct!");
@@ -28,17 +28,13 @@ public class Decoder extends GameTask{
     }
 
     public void play() {
-        System.out.println("You are still in the first room where you found the blue prints");
+        System.out.println("You are still in the first room where you found the blue print");
         System.out.println("But you notice a letter on the desk and it has only one thing written on it: ");
-        System.out.print(decodedWord);
-        System.out.println("You also see a padlock on the door that needs" + numVowels + "letters");
-        if (padlock()) {
-            return;
-        } else {
-            padlock();
+        System.out.println(decodedWord);
+        System.out.println("You also see a padlock on the door that needs " + numVowels + " letters");
+        while (!padlock()) {
         }
     }
-
 
     public String decode() {
         String decoded = "";
