@@ -13,6 +13,7 @@ public class CipherTester {
         System.out.println("Decoding test passed.");
 
         // Test compress method
+        message = "aaaaaaaaaaaa";
         String compressedMessage = Cipher.compress(message);
         assert compressedMessage.equals("H1e1l2o1 1W1o1r1l1d1!") : "Compression failed";
         System.out.println("Compression test passed.");
@@ -21,6 +22,9 @@ public class CipherTester {
         String decompressedMessage = Cipher.decompress(compressedMessage);
         assert decompressedMessage.equals(message) : "Decompression failed";
         System.out.println("Decompression test passed.");
+
+        String message1 = "aa";
+        Cipher.compress(message1);
 
         // All tests passed
         System.out.println("All tests passed successfully!");
